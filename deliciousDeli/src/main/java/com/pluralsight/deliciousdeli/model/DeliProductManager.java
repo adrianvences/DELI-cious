@@ -99,21 +99,13 @@ public class DeliProductManager {
         return sides = loadProductsFromCSV(csvFile, Side::new);
     }
 
-    public void displayProducts() {
-        System.out.println("Toppings");
-        toppings.forEach(System.out::println);
-        System.out.println("Chips");
-        chips.forEach(System.out::println);
-        System.out.println("Drinks");
-        drinks.forEach(System.out::println);
-        System.out.println("PremiumMeats");
-        meats.forEach(System.out::println);
-        System.out.println("cheese");
-        cheeses.forEach(System.out::println);
-        System.out.println("sides");
-        sides.forEach(System.out::println);
-        System.out.println("sauces");
-        sauces.forEach(System.out::println);
+    public <T> void displayProducts(String productType, List<T> productList) {
+        System.out.println(productType);
+//        productList.forEach(System.out::println);
+        for (int i = 0; i < productList.size(); i++) {
+            T product = productList.get(i);
+            System.out.println((i + 1) + ". " + product);
+        }// Increment index by 1
     }
 
     // Getters

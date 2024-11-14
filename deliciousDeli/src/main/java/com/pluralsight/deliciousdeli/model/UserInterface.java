@@ -1,7 +1,9 @@
 package com.pluralsight.deliciousdeli.model;
 
+import com.pluralsight.deliciousdeli.products.Bread;
 import com.pluralsight.deliciousdeli.products.Sandwich;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -39,7 +41,7 @@ public class UserInterface {
     }
 
     // *** Order Screen Method *** //
-    public static void orderScreen(){
+    public void orderScreen(){
         boolean flag = true;
 
         while(flag) {
@@ -49,7 +51,7 @@ public class UserInterface {
             switch (input){
                 // New Order
                 case "1":
-                    System.out.println("add sandwich");
+                    processAddSandwichRequest();
                     break;
                 // Add drink
                 case "2":
@@ -87,7 +89,15 @@ public class UserInterface {
     }
 
     public void processAddSandwichRequest(){
-        Sandwich sandwich =
+        // select bread
+        String breadChoicePrompt = "Select your bread choice by number (digit): ";
+        List<Bread> breads =  deliProducts.getBreads();
+        productsFileManager.displayProducts("Bread choices: ", breads);
+        String breadChoice = Prompts.promptMaker(breadChoicePrompt);
+        Bread selectedBread = breads.get(Integer.parseInt(breadChoice) - 1 );
+
+        // select sandwich size
+
     }
 
 

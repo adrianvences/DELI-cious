@@ -13,11 +13,6 @@ public class Bread extends Product{
 
     @Override
     public String toString() {
-        return "Bread{" +
-                "name='" + name + '\'' +
-                ", smallPrice=" + smallPrice +
-                ", mediumPrice=" + mediumPrice +
-                ", largePrice=" + largePrice +
-                '}';
+        return name;
     }
 }

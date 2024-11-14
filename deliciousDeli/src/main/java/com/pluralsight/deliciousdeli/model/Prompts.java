@@ -1,8 +1,13 @@
 package com.pluralsight.deliciousdeli.model;
 
-import com.pluralsight.deliciousdeli.products.Sandwich;
+import com.pluralsight.deliciousdeli.controller.DELIcousMain;
+import com.pluralsight.deliciousdeli.products.*;
+
+import java.util.List;
 
 public class Prompts {
+    UserInterface ui = new UserInterface();
+
 
     public static String promptMaker(String prompt) {
         System.out.println(prompt);
@@ -34,8 +39,9 @@ public class Prompts {
                     """);
     }
 
-    public static Sandwich addSandwichPrompt(){
-        // select bread
-        String breadChoicePrompt =
-    }
+//    public static Sandwich addSandwichPrompt(){
+//        // select bread
+//        String breadChoicePrompt = "Select your bread choice: ";
+//        List<Bread> breads =  ;
+//    }
 }
