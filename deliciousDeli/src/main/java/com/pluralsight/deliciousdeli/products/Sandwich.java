@@ -1,4 +1,4 @@
-package com.pluralsight.deliciousdeli.model;
+package com.pluralsight.deliciousdeli.products;
 
 import java.util.List;
 

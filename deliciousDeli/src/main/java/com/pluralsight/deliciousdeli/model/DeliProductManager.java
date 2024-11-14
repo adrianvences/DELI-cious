@@ -1,5 +1,7 @@
 package com.pluralsight.deliciousdeli.model;
 
+import com.pluralsight.deliciousdeli.products.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -11,6 +13,10 @@ public class DeliProductManager {
     private List<Topping> toppings;
     private List<Drink> drinks;
     private List<Chips> chips;
+    private List<PremiumMeat> meats;
+    private List<PremiumCheese> cheeses;
+    private List<Sauce> sauces;
+    private List<Side> sides;
 
     // Constructor
     public DeliProductManager() {
@@ -33,17 +39,10 @@ public class DeliProductManager {
                 String[] productData = line.split("\\|");
                     String productName = productData[0];
                     double price = Double.parseDouble(productData[1]);
-                // for products with more than one price
-                if (productData.length == 4) {
                     double mediumPrice = Double.parseDouble(productData[2]);
                     double largePrice = Double.parseDouble(productData[3]);
-//                    T product = factory.create(productName, price, mediumPrice,largePrice);
-                    T product = factory.create(productName, price);
+                    T product = factory.create(productName, price, mediumPrice,largePrice);
                     products.add(product);
-                } else {
-                    T product = factory.create(productName, price);
-                    products.add(product);
-                }
             }
 
         } catch (Exception e) {
@@ -61,17 +60,41 @@ public class DeliProductManager {
         chips = loadProductsFromCSV(csvFile , Chips::new);
     }
 
-//    public void loadDrinksFromCSV(String csvFile) {
-//        drinks = loadProductsFromCSV(csvFile, (name, price, mediumPrice, largePrice) -> {
-//            return new Drink(name, price, mediumPrice, largePrice);
-//        });
-//    }
+    public void loadDrinksFromCSV(String csvFile) {
+        drinks = loadProductsFromCSV(csvFile, Drink::new);
+    }
+
+    public void loadPremiumToppingsFromCSV(String csvFile) {
+         meats = loadProductsFromCSV(csvFile, PremiumMeat::new);
+    }
+
+    public void loadPremiumToppingCheeseFromCSV(String csvFile) {
+        cheeses = loadProductsFromCSV(csvFile, PremiumCheese::new);
+    }
+
+    public void loadSauceSelection(String csvFile) {
+        sauces = loadProductsFromCSV(csvFile, Sauce::new);
+    }
+
+    public void loadSideSelection(String csvFile) {
+        sides = loadProductsFromCSV(csvFile, Side::new);
+    }
 
     public void displayProducts() {
         System.out.println("Toppings");
         toppings.forEach(System.out::println);
-        System.out.println("chips");
+        System.out.println("Chips");
         chips.forEach(System.out::println);
+        System.out.println("Drinks");
+        drinks.forEach(System.out::println);
+        System.out.println("PremiumMeats");
+        meats.forEach(System.out::println);
+        System.out.println("cheese");
+        cheeses.forEach(System.out::println);
+        System.out.println("sides");
+        sides.forEach(System.out::println);
+        System.out.println("sauces");
+        sauces.forEach(System.out::println);
     }
 
     // Getters
