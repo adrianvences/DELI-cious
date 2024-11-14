@@ -10,13 +10,14 @@ import java.util.List;
 
 public class DeliProductManager {
     // Lists to store all products
-    private List<Topping> toppings;
+    private List<IncludedTopping> toppings;
     private List<Drink> drinks;
     private List<Chips> chips;
     private List<PremiumMeat> meats;
     private List<PremiumCheese> cheeses;
     private List<Sauce> sauces;
     private List<Side> sides;
+    private List<Bread> breads;
 
     // Constructor
     public DeliProductManager() {
@@ -52,32 +53,50 @@ public class DeliProductManager {
         return products;
     }
 
-    public void loadToppingsFromCSV(String csvFile) {
-        toppings = loadProductsFromCSV(csvFile , Topping::new);
+    public Deli getDeli(){
+        Deli deli = new Deli("Delicious deli", "123 sandwich street", "980-222-2222",
+                loadBreadsFromCSV("src/main/resources/menu-items/bread.csv"),
+                loadChipsFromCSV("src/main/resources/menu-items/chips.csv"),
+                loadDrinksFromCSV("src/main/resources/menu-items/drinks.csv"),
+                loadPremiumToppingCheeseFromCSV("src/main/resources/menu-items/premiumToppingCheese.csv"),
+                loadPremiumToppingsFromCSV("src/main/resources/menu-items/premiumToppingsMeats.csv"),
+                loadSauceSelection("src/main/resources/menu-items/sauceSelection.csv"),
+                loadSideSelection("src/main/resources/menu-items/sideSelection.csv"),
+                loadToppingsFromCSV("src/main/resources/menu-items/regularToppings.csv")
+                );
+        return deli;
     }
 
-    public void loadChipsFromCSV(String csvFile) {
-        chips = loadProductsFromCSV(csvFile , Chips::new);
+    public List<Bread> loadBreadsFromCSV(String csvFile) {
+        return breads = loadProductsFromCSV(csvFile, Bread::new);
     }
 
-    public void loadDrinksFromCSV(String csvFile) {
-        drinks = loadProductsFromCSV(csvFile, Drink::new);
+    public List<IncludedTopping> loadToppingsFromCSV(String csvFile) {
+        return toppings = loadProductsFromCSV(csvFile , IncludedTopping::new);
     }
 
-    public void loadPremiumToppingsFromCSV(String csvFile) {
-         meats = loadProductsFromCSV(csvFile, PremiumMeat::new);
+    public List<Chips> loadChipsFromCSV(String csvFile) {
+        return chips = loadProductsFromCSV(csvFile , Chips::new);
     }
 
-    public void loadPremiumToppingCheeseFromCSV(String csvFile) {
-        cheeses = loadProductsFromCSV(csvFile, PremiumCheese::new);
+    public List<Drink> loadDrinksFromCSV(String csvFile) {
+        return drinks = loadProductsFromCSV(csvFile, Drink::new);
     }
 
-    public void loadSauceSelection(String csvFile) {
-        sauces = loadProductsFromCSV(csvFile, Sauce::new);
+    public List<PremiumMeat> loadPremiumToppingsFromCSV(String csvFile) {
+         return meats = loadProductsFromCSV(csvFile, PremiumMeat::new);
     }
 
-    public void loadSideSelection(String csvFile) {
-        sides = loadProductsFromCSV(csvFile, Side::new);
+    public List<PremiumCheese> loadPremiumToppingCheeseFromCSV(String csvFile) {
+        return cheeses = loadProductsFromCSV(csvFile, PremiumCheese::new);
+    }
+
+    public List<Sauce> loadSauceSelection(String csvFile) {
+        return sauces = loadProductsFromCSV(csvFile, Sauce::new);
+    }
+
+    public List<Side> loadSideSelection(String csvFile) {
+        return sides = loadProductsFromCSV(csvFile, Side::new);
     }
 
     public void displayProducts() {
@@ -98,7 +117,7 @@ public class DeliProductManager {
     }
 
     // Getters
-    public List<Topping> getToppings() {
+    public List<IncludedTopping> getToppings() {
         return toppings;
     }
 

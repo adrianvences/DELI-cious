@@ -1,8 +1,8 @@
 package com.pluralsight.deliciousdeli.products;
 
-public class Topping extends Product {
+public class IncludedTopping extends Product {
 
-    public Topping(String name, double smallPrice, double mediumPrice, double largePrice) {
+    public IncludedTopping(String name, double smallPrice, double mediumPrice, double largePrice) {
         super(name, smallPrice, mediumPrice, largePrice);
     }
 

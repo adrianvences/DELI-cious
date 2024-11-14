@@ -1,5 +1,7 @@
 package com.pluralsight.deliciousdeli.model;
 
+import com.pluralsight.deliciousdeli.products.Sandwich;
+
 public class Prompts {
 
     public static String promptMaker(String prompt) {
@@ -8,7 +10,7 @@ public class Prompts {
     }
 
     public static String homePrompt(){
-        return Prompts.promptMaker("""
+        return promptMaker("""
                     *-------- DELICIOUS sandwiches --------*
                     -----------------Home-------------------
                      ~ Enter                               -
@@ -19,7 +21,7 @@ public class Prompts {
     }
 
     public static String orderPrompt(){
-        return Prompts.promptMaker("""
+        return promptMaker("""
                     *-------- DELICIOUS sandwiches --------*
                     -----------------Home-------------------
                      ~ Enter                               -
@@ -30,5 +32,10 @@ public class Prompts {
                      - 0 ) Cancel Order                    -
                      ---------------------------------------
                     """);
+    }
+
+    public static Sandwich addSandwichPrompt(){
+        // select bread
+        String breadChoicePrompt =
     }
 }

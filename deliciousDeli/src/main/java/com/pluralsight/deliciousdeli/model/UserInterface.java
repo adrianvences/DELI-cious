@@ -1,14 +1,19 @@
 package com.pluralsight.deliciousdeli.model;
 
+import com.pluralsight.deliciousdeli.products.Sandwich;
+
 import java.util.Scanner;
 
 public class UserInterface {
     // Scanner to read user input from terminal
     static Scanner scanner = new Scanner(System.in);
+    Deli deliProducts;
+    DeliProductManager productsFileManager;
 
 
                         // *** Home Screen Method *** //
-    public static void homeScreen(){
+    public void homeScreen(){
+        init();
         // Boolean Flag to exit while loop
         boolean loopFlag = true;
         // While loop to keep home screen iterating through switch cases.
@@ -69,6 +74,20 @@ public class UserInterface {
             }
 
         }
+    }
+
+    public void init() {
+        productsFileManager = new DeliProductManager();
+        this.deliProducts = productsFileManager.getDeli();
+        if(this.deliProducts != null){
+            System.out.println("deli loaded");
+        } else {
+            System.out.println("deli not loaded, check file");
+        }
+    }
+
+    public void processAddSandwichRequest(){
+        Sandwich sandwich =
     }
 
 
