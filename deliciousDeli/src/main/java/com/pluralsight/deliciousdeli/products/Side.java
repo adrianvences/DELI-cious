@@ -2,8 +2,8 @@ package com.pluralsight.deliciousdeli.products;
 
 public class Side extends Product {
 
-    public Side(String name, double smallPrice, double mediumPrice, double largePrice) {
-        super(name, smallPrice, mediumPrice, largePrice);
+    public Side(String name, double price, double smallPrice, double mediumPrice, double largePrice) {
+        super(name, price, smallPrice, mediumPrice, largePrice);
     }
 
     @Override

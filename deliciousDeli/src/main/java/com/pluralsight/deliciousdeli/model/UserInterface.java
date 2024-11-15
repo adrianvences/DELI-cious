@@ -10,6 +10,7 @@ public class UserInterface {
     static Scanner scanner = new Scanner(System.in);
     Deli deliProducts;
     DeliProductManager productsFileManager;
+    Order currentOrder;
 
                         // *** Home Screen Method *** //
     public void homeScreen(){
@@ -41,6 +42,8 @@ public class UserInterface {
     // *** Order Screen Method *** //
     public void orderScreen(){
         boolean flag = true;
+        String customerName = Prompts.promptMaker("Please enter your name: ");
+        currentOrder = new Order(generateOrderId(), customerName);
 
         while(flag) {
 
@@ -49,19 +52,22 @@ public class UserInterface {
             switch (input){
                 // New Order
                 case "1":
-                    processAddSandwichRequest();
+                    Sandwich sandwich = processAddSandwichRequest();
+                    currentOrder.addProduct(sandwich);
                     break;
                 // Add drink
                 case "2":
-                    processAddDrinkRequest();
+                    Drink drink = processAddDrinkRequest();
+                    currentOrder.addProduct(drink);
                     break;
                 // Add Chips
                 case "3":
-                    System.out.println("add chips");
+                    Chips chips = processGetChipsRequest();
+                    currentOrder.addProduct(chips);
                     break;
                 // Checkout
                 case "4":
-                    System.out.println("check out");
+                    checkout();
                     break;
                 // Exit
                 case "0":
@@ -100,6 +106,7 @@ public class UserInterface {
         SandWichSize sandwichSize = productsFileManager.getSandwichSizeFromChoice(sizeChoice);
         System.out.println(sandwichSize);
 
+
         // select meat
         List<PremiumMeat> premiumMeats = deliProducts.getMeats();
         List<PremiumMeat> selectedMeats = new ArrayList<>();
@@ -122,6 +129,10 @@ public class UserInterface {
 
         // select if toasted
         boolean isToasted = Prompts.promptMaker("Would you like this sandwich toasted? (Yes/No)").equalsIgnoreCase("Yes");
+
+        double toppingsPrice = calculateToppingsPrice(selectedMeats,selectedCheeses,selectedIncludedToppings,selectedSauces);
+
+
 
         List<Object> allSelectedItems = new ArrayList<>();
         allSelectedItems.add(selectedMeats);
@@ -178,6 +189,22 @@ public class UserInterface {
         List<Chips> chips = deliProducts.getChips();
         Chips selectedChips = chips.get(0);
 
+        boolean wantsChips = Prompts.promptMaker("Would you like chips with this order? (Yes/No)").equalsIgnoreCase("yes");
+        if(wantsChips){
+            // If the user wants chips, create a new Chips object with the selected prices
+            Chips chips1 = new Chips(
+                    "Chips",
+                    selectedChips.getSmallPrice(),
+                    selectedChips.getMediumPrice(),
+                    selectedChips.getLargePrice(),
+                    selectedChips.getLargePrice() // If you need to use different price for large, modify here
+            );
+            System.out.println(chips1);
+            return chips1;
+        } else {
+            System.out.println("No chips selected.");
+            return null;
+        }
     }
 
 
@@ -204,6 +231,46 @@ public class UserInterface {
             }
         }
         return selectedToppings;
+    }
+
+    private int generateOrderId() {
+        return (int) (System.currentTimeMillis() % 10000);  // Generates a simple order ID based on current time
+    }
+
+    public void checkout() {
+        if (currentOrder != null) {
+            System.out.println("Your order details:");
+            System.out.println(currentOrder);
+        } else {
+            System.out.println("No order found. Please start an order.");
+        }
+    }
+
+    private double calculateToppingsPrice(List<PremiumMeat> meats, List<PremiumCheese> cheeses,
+                                          List<IncludedTopping> toppings, List<Sauce> sauces) {
+        double totalToppingsPrice = 0.0;
+
+        // Add the price for selected meats (assuming they have a price field)
+        for (PremiumMeat meat : meats) {
+            totalToppingsPrice += meat.getPrice();
+        }
+
+        // Add the price for selected cheeses (assuming they have a price field)
+        for (PremiumCheese cheese : cheeses) {
+            totalToppingsPrice += cheese.getPrice();
+        }
+
+        // Add the price for selected included toppings (assuming they have a price field)
+        for (IncludedTopping topping : toppings) {
+            totalToppingsPrice += topping.getPrice();
+        }
+
+        // Add the price for selected sauces (assuming they have a price field)
+        for (Sauce sauce : sauces) {
+            totalToppingsPrice += sauce.getPrice();
+        }
+
+        return totalToppingsPrice;
     }
 
 

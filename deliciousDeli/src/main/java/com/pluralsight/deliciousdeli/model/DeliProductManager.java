@@ -40,10 +40,10 @@ public class DeliProductManager {
             while ((line = buffReader.readLine()) != null) {
                 String[] productData = line.split("\\|");
                     String productName = productData[0];
-                    double price = Double.parseDouble(productData[1]);
+                    double smallPrice = Double.parseDouble(productData[1]);
                     double mediumPrice = Double.parseDouble(productData[2]);
                     double largePrice = Double.parseDouble(productData[3]);
-                    T product = factory.create(productName, price, mediumPrice,largePrice);
+                    T product = factory.create(productName, 0, smallPrice, mediumPrice,largePrice);
                     products.add(product);
             }
 

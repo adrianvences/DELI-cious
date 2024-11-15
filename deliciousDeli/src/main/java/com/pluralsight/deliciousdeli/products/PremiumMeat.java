@@ -1,8 +1,8 @@
 package com.pluralsight.deliciousdeli.products;
 
 public class PremiumMeat extends Product {
-    public PremiumMeat(String name, double smallPrice, double mediumPrice, double largePrice) {
-        super(name, smallPrice, mediumPrice, largePrice);
+    public PremiumMeat(String name, double price, double smallPrice, double mediumPrice, double largePrice) {
+        super(name, price, smallPrice, mediumPrice, largePrice);
     }
 
     @Override
