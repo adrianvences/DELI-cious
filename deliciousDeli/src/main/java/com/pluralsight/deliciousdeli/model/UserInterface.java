@@ -53,7 +53,7 @@ public class UserInterface {
                     break;
                 // Add drink
                 case "2":
-                    System.out.println("add drink");
+                    processAddDrinkRequest();
                     break;
                 // Add Chips
                 case "3":
@@ -133,7 +133,50 @@ public class UserInterface {
         return new Sandwich(selectedBread,sandwichSize,isToasted,allSelectedItems);
     }
 
-    public void processAddDrinkRequest(){
+    public Drink processAddDrinkRequest(){
+        List<Drink> drinks = deliProducts.getDrinks();
+        Drink selectedDrink = drinks.get(0); // Get the first (and only) drink
+
+        double price = 0; // To store the selected price
+        boolean validChoice = false; // To track if a valid choice is made
+
+        // Loop until the user selects a valid drink size
+        while (!validChoice) {
+            // Prompt user to select a drink size
+            String sizeChoice = Prompts.drinkPrompt();
+
+            switch (sizeChoice) {
+                case "1": // Small
+                    price = selectedDrink.getSmallPrice();
+                    validChoice = true; // Exit the loop when a valid choice is made
+                    break;
+                case "2": // Medium
+                    price = selectedDrink.getMediumPrice();
+                    validChoice = true; // Exit the loop when a valid choice is made
+                    break;
+                case "3": // Large
+                    price = selectedDrink.getLargePrice();
+                    validChoice = true; // Exit the loop when a valid choice is made
+                    break;
+                default:
+                    // Invalid input, re-prompt the user
+                    System.out.println("Invalid size choice. Please select a valid option (1, 2, or 3).");
+                    break; // Re prompt until a valid choice is made
+            }
+        }
+
+        // Set the price for the selected drink size
+        selectedDrink.setPrice(price);
+
+        // Print the selected drink and its price
+        System.out.println("$" + price);
+        return selectedDrink;
+        // Optionally, you can return the selectedDrink or perform any other logic you need.
+    }
+
+    public Chips processGetChipsRequest() {
+        List<Chips> chips = deliProducts.getChips();
+        Chips selectedChips = chips.get(0);
 
     }
 

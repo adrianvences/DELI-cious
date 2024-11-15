@@ -39,9 +39,12 @@ public class Prompts {
                     """);
     }
 
-//    public static Sandwich addSandwichPrompt(){
-//        // select bread
-//        String breadChoicePrompt = "Select your bread choice: ";
-//        List<Bread> breads =  ;
-//    }
+    public static String drinkPrompt(){
+        return promptMaker("""
+                    Enter you drink choice:
+                    1 ) Small
+                    2 ) Medium
+                    3 ) Large
+                    """);
+    }
 }
