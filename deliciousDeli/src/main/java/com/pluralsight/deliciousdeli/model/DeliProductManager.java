@@ -1,5 +1,6 @@
 package com.pluralsight.deliciousdeli.model;
 
+import com.pluralsight.deliciousdeli.enums.SandWichSize;
 import com.pluralsight.deliciousdeli.products.*;
 
 import java.io.BufferedReader;
@@ -104,9 +105,37 @@ public class DeliProductManager {
 //        productList.forEach(System.out::println);
         for (int i = 0; i < productList.size(); i++) {
             T product = productList.get(i);
-            System.out.println((i + 1) + ". " + product);
+            System.out.println((i + 1) + ") " + product);
         }// Increment index by 1
     }
+
+    public void displaySandwichSizes() {
+        System.out.println("Select your sandwich size:");
+        // Loop through the enum values to show options
+        for (int i = 0; i < SandWichSize.values().length; i++) {
+            SandWichSize size = SandWichSize.values()[i];
+            // Display size as 1 = FOUR, 2 = EIGHT, 3 = TWELVE
+            System.out.println((i + 1) + ") " + size.name().toLowerCase() + " inch");
+        }
+    }
+
+    public SandWichSize getSandwichSizeFromChoice(String sizeChoice) {
+        try {
+            // Convert the user's input to an index and check if it's valid
+            int index = Integer.parseInt(sizeChoice) - 1; // Convert to zero-based index
+            if (index >= 0 && index < SandWichSize.values().length) {
+                return SandWichSize.values()[index]; // Return the selected size
+            }
+        } catch (NumberFormatException e) {
+            // Handle invalid input (non-integer values)
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
+        return null; // Return null if the selection is invalid
+    }
+
+
+
+
 
     // Getters
     public List<IncludedTopping> getToppings() {

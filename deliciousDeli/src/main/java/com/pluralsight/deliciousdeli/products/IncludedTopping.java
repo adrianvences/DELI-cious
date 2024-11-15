@@ -13,11 +13,6 @@ public class IncludedTopping extends Product {
 
     @Override
     public String toString() {
-        return "Topping{" +
-                "name='" + name + '\'' +
-                ", smallPrice=" + smallPrice +
-                ", mediumPrice=" + mediumPrice +
-                ", largePrice=" + largePrice +
-                '}';
+        return name;
     }
 }

@@ -12,11 +12,6 @@ public class PremiumCheese extends Product{
 
     @Override
     public String toString() {
-        return "Cheese{" +
-                "name='" + name + '\'' +
-                ", smallPrice=" + smallPrice +
-                ", mediumPrice=" + mediumPrice +
-                ", largePrice=" + largePrice +
-                '}';
+        return name;
     }
 }

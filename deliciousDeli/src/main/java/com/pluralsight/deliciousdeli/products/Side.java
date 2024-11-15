@@ -13,11 +13,6 @@ public class Side extends Product {
 
     @Override
     public String toString() {
-        return "Side{" +
-                "name='" + name + '\'' +
-                ", smallPrice=" + smallPrice +
-                ", mediumPrice=" + mediumPrice +
-                ", largePrice=" + largePrice +
-                '}';
+        return name;
     }
 }

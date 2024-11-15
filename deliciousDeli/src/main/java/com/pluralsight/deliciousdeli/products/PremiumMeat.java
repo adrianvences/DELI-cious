@@ -12,12 +12,7 @@ public class PremiumMeat extends Product {
 
     @Override
     public String toString() {
-        return "PremiumTopping{" +
-                "name='" + name + '\'' +
-                ", smallPrice=" + smallPrice +
-                ", mediumPrice=" + mediumPrice +
-                ", largePrice=" + largePrice +
-                '}';
+        return name;
     }
 }
 
