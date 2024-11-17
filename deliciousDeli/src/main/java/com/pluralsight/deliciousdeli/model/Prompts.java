@@ -1,10 +1,5 @@
 package com.pluralsight.deliciousdeli.model;
 
-import com.pluralsight.deliciousdeli.controller.DELIcousMain;
-import com.pluralsight.deliciousdeli.products.*;
-
-import java.util.List;
-
 public class Prompts {
     UserInterface ui = new UserInterface();
 

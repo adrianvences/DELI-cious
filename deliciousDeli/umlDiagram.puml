@@ -1,0 +1,194 @@
+@startuml
+class com.pluralsight.deliciousdeli.model.Deli {
+- String name
+- String address
+- String phoneNumber
+- List<Bread> breads
+- List<Chips> chips
+- List<Drink> drinks
+- List<PremiumCheese> cheeses
+- List<PremiumMeat> meats
+- List<Sauce> sauces
+- List<Side> sides
+- List<IncludedTopping> includedToppings
++ void addProduct(T)
++ String getName()
++ String getAddress()
++ String getPhoneNumber()
++ List<Bread> getBreads()
++ List<Chips> getChips()
++ List<Drink> getDrinks()
++ List<PremiumCheese> getCheeses()
++ List<PremiumMeat> getMeats()
++ List<Sauce> getSauces()
++ List<Side> getSides()
++ List<IncludedTopping> getIncludedToppings()
+}
+
+
+class com.pluralsight.deliciousdeli.products.Bread {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.products.Drink {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.DataManagers.DeliProductManager {
+- List<IncludedTopping> toppings
+- List<Drink> drinks
+- List<Chips> chips
+- List<PremiumMeat> meats
+- List<PremiumCheese> cheeses
+- List<Sauce> sauces
+- List<Side> sides
+- List<Bread> breads
++ List<T> loadProductsFromCSV(String,IncludedProduct<T>)
++ Deli getDeli()
++ List<Bread> loadBreadsFromCSV(String)
++ List<IncludedTopping> loadToppingsFromCSV(String)
++ List<Chips> loadChipsFromCSV(String)
++ List<Drink> loadDrinksFromCSV(String)
++ List<PremiumMeat> loadPremiumToppingsFromCSV(String)
++ List<PremiumCheese> loadPremiumToppingCheeseFromCSV(String)
++ List<Sauce> loadSauceSelection(String)
++ List<Side> loadSideSelection(String)
++ void displayProducts(String,List<T>)
++ void displaySandwichSizes()
++ SandWichSize getSandwichSizeFromChoice(String)
++ List<IncludedTopping> getToppings()
++ List<Drink> getDrinks()
++ List<Chips> getChips()
+}
+
+
+abstract class com.pluralsight.deliciousdeli.products.Product {
+# String name
+# double price
+# double smallPrice
+# double mediumPrice
+# double largePrice
++ String getName()
++ double getPrice()
++ double getSmallPrice()
++ double getMediumPrice()
++ double getLargePrice()
++ void setPrice(double)
++ {abstract}double calculateProductTotal()
+}
+
+
+class com.pluralsight.deliciousdeli.products.PremiumCheese {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.products.Side {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.products.Chips {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.products.PremiumMeat {
++ double calculateProductTotal()
++ String toString()
+}
+
+enum com.pluralsight.deliciousdeli.enums.SandWichSize {
++  FOUR
++  EIGHT
++  TWELVE
+}
+
+class com.pluralsight.deliciousdeli.controller.DELIcousMain {
++ {static} void main(String[])
+}
+
+class com.pluralsight.deliciousdeli.products.Sandwich {
+- Bread breadChoice
+- SandWichSize sandwichSize
+- boolean toasted
+- List<Object> toppings
++ String toString()
++ double calculateProductTotal()
+}
+
+
+class com.pluralsight.deliciousdeli.products.Sauce {
++ double calculateProductTotal()
++ String toString()
+}
+
+interface com.pluralsight.deliciousdeli.products.IncludedProduct {
+~ T create(String,double,double,double,double)
+}
+
+class com.pluralsight.deliciousdeli.model.UserInterface {
+~ {static} Scanner scanner
+~ Deli deliProducts
+~ DeliProductManager productsFileManager
+~ Order currentOrder
++ void homeScreen()
++ void orderScreen()
++ void init()
++ Sandwich processAddSandwichRequest()
++ Drink processAddDrinkRequest()
++ Chips processGetChipsRequest()
++ List<T> selectToppings(String,List<T>,List<T>)
+- int generateOrderId()
++ void checkout()
+- double calculateToppingsPrice(List<PremiumMeat>,List<PremiumCheese>,List<IncludedTopping>,List<Sauce>)
+}
+
+
+class com.pluralsight.deliciousdeli.model.Order {
+- int orderId
+- String customerName
+- List<Product> products
+- double totalPrice
+- List<Sandwich> sandwiches
++ void addProduct(Product)
++ double getTotalPrice()
++ List<Product> getProducts()
++ double getPrice()
++ String toCSV()
++ String toString()
+}
+
+
+class com.pluralsight.deliciousdeli.model.Prompts {
+~ UserInterface ui
++ {static} String promptMaker(String)
++ {static} String homePrompt()
++ {static} String orderPrompt()
++ {static} String drinkPrompt()
+}
+
+
+class com.pluralsight.deliciousdeli.products.IncludedTopping {
++ double calculateProductTotal()
++ String toString()
+}
+
+class com.pluralsight.deliciousdeli.DataManagers.ReceiptManager {
++ {static} void writeOrderToCSV(Order,String)
+}
+
+
+
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Bread
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Drink
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.PremiumCheese
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Side
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Chips
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.PremiumMeat
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Sandwich
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.Sauce
+com.pluralsight.deliciousdeli.products.Product <|-- com.pluralsight.deliciousdeli.products.IncludedTopping
+@enduml

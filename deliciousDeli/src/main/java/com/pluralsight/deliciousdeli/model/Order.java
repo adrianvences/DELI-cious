@@ -42,6 +42,32 @@ public class Order {
         return total;
     }
 
+    public String toCSV() {
+
+        StringBuilder csv = new StringBuilder();
+
+        // Add Headers
+        csv.append("""
+                ------Receipt------
+                Delicious Deli
+                """).append("\n");
+
+        // Add Order ID and Customer Name
+        csv.append("Order ID: " + orderId).append("\n").append("Customer Name: " + customerName).append("\n");
+
+        // Add each product and its price
+        for (Product product : products) {
+            // Add product name and price
+            csv.append(" ").append(product.getName()).append(" ").append(String.format("%.2f", product.getPrice())).append("\n");
+        }
+
+        // Add the total price at the bottom
+        csv.append("\nTotal: ").append(String.format("%.2f", totalPrice)).append("\n");
+        csv.append("-------------------");
+
+        return csv.toString();
+    }
+
     @Override
     public String toString() {
         return "Order {" +

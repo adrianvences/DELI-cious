@@ -1,4 +1,6 @@
 package com.pluralsight.deliciousdeli.model;
+import com.pluralsight.deliciousdeli.DataManagers.DeliProductManager;
+import com.pluralsight.deliciousdeli.DataManagers.ReceiptManager;
 import com.pluralsight.deliciousdeli.enums.SandWichSize;
 import com.pluralsight.deliciousdeli.products.*;
 import java.util.ArrayList;
@@ -68,6 +70,7 @@ public class UserInterface {
                 // Checkout
                 case "4":
                     checkout();
+                    ReceiptManager.writeOrderToCSV(currentOrder,"src/main/resources/orders.csv");
                     break;
                 // Exit
                 case "0":
@@ -132,8 +135,6 @@ public class UserInterface {
 
         double toppingsPrice = calculateToppingsPrice(selectedMeats,selectedCheeses,selectedIncludedToppings,selectedSauces);
 
-
-
         List<Object> allSelectedItems = new ArrayList<>();
         allSelectedItems.add(selectedMeats);
         allSelectedItems.add(selectedCheeses);
@@ -182,7 +183,6 @@ public class UserInterface {
         // Print the selected drink and its price
         System.out.println("$" + price);
         return selectedDrink;
-        // Optionally, you can return the selectedDrink or perform any other logic you need.
     }
 
     public Chips processGetChipsRequest() {
@@ -197,7 +197,7 @@ public class UserInterface {
                     selectedChips.getSmallPrice(),
                     selectedChips.getMediumPrice(),
                     selectedChips.getLargePrice(),
-                    selectedChips.getLargePrice() // If you need to use different price for large, modify here
+                    selectedChips.getLargePrice()
             );
             System.out.println(chips1);
             return chips1;
@@ -225,8 +225,9 @@ public class UserInterface {
                 T selectedTopping = availableToppings.get(Integer.parseInt(toppingChoice) - 1);
                 selectedToppings.add(selectedTopping);
                 System.out.println("Selected toppings: " + selectedToppings);
+                //Multi catch exception
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                // Handle invalid input (non-integer or out-of-range selection)
+                // Handle invalid input
                 System.out.println("Invalid choice. Please enter a valid number.");
             }
         }
@@ -250,22 +251,22 @@ public class UserInterface {
                                           List<IncludedTopping> toppings, List<Sauce> sauces) {
         double totalToppingsPrice = 0.0;
 
-        // Add the price for selected meats (assuming they have a price field)
+        // Add the price for selected meats
         for (PremiumMeat meat : meats) {
             totalToppingsPrice += meat.getPrice();
         }
 
-        // Add the price for selected cheeses (assuming they have a price field)
+        // Add the price for selected cheese
         for (PremiumCheese cheese : cheeses) {
             totalToppingsPrice += cheese.getPrice();
         }
 
-        // Add the price for selected included toppings (assuming they have a price field)
+        // Add the price for selected included toppings
         for (IncludedTopping topping : toppings) {
             totalToppingsPrice += topping.getPrice();
         }
 
-        // Add the price for selected sauces (assuming they have a price field)
+        // Add the price for selected sauces
         for (Sauce sauce : sauces) {
             totalToppingsPrice += sauce.getPrice();
         }
