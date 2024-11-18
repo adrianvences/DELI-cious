@@ -2,6 +2,7 @@
 ![Read me banner](images/Deli-cious_Deli_App.png)
 ---
 ## -------------------------- 📑 Description 📑 ------------------------------
+### Project Board - https://github.com/users/adrianvences/projects/6/settings
 The DELI-cious Deli App is designed to simulate an ordering system for a sandwich
 shop.The program allows users to create custom sandwiches by selecting sandwich 
 size and ingredients. They can also add drinks and chips to there order. This application
