@@ -95,6 +95,15 @@ public class UserInterface {
         } else {
             System.out.println("deli not loaded, check file");
         }
+
+        List<PremiumCheese> testCheese = productsFileManager.getCheeses();
+        for (PremiumCheese c : testCheese){
+            System.out.println(c);
+            System.out.println(c.getPrice());
+            System.out.println(c.getSmallPrice());
+            System.out.println(c.getMediumPrice());
+            System.out.println(c.getLargePrice());
+        }
     }
 
     public Sandwich processAddSandwichRequest() {
@@ -272,32 +281,4 @@ public class UserInterface {
         }
     }
 
-//    private static double calculateToppingsPrice(List<PremiumMeat> meats, List<PremiumCheese> cheeses,
-//                                          List<IncludedTopping> toppings, List<Sauce> sauces,SandWichSize size) {
-//        double totalToppingsPrice = 0.0;
-//
-//        // Add the price for selected meats
-//        for (PremiumMeat meat : meats) {
-//            totalToppingsPrice += meat.setPrice(size);
-//        }
-//
-//        // Add the price for selected cheese
-//        for (PremiumCheese cheese : cheeses) {
-//            totalToppingsPrice += cheese.getPrice();
-//        }
-//
-//        // Add the price for selected included toppings
-//        for (IncludedTopping topping : toppings) {
-//            totalToppingsPrice += topping.getPrice();
-//        }
-//
-//        // Add the price for selected sauces
-//        for (Sauce sauce : sauces) {
-//            totalToppingsPrice += sauce.getPrice();
-//        }
-//
-//        return totalToppingsPrice;
-//    }
-//
-//
 }

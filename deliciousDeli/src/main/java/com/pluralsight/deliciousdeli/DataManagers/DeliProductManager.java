@@ -150,4 +150,25 @@ public class DeliProductManager {
     public List<Chips> getChips() {
         return chips;
     }
+
+    public List<PremiumMeat> getMeats() {
+        return meats;
+    }
+
+    public List<PremiumCheese> getCheeses() {
+        return cheeses;
+    }
+
+    public List<Sauce> getSauces() {
+        return sauces;
+    }
+
+    public List<Side> getSides() {
+        return sides;
+    }
+
+    public List<Bread> getBreads() {
+        return breads;
+    }
 }
+

@@ -2,6 +2,7 @@ package com.pluralsight.deliciousdeli.products;
 
 import com.pluralsight.deliciousdeli.enums.SandWichSize;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich extends Product {
@@ -17,8 +18,6 @@ public class Sandwich extends Product {
         this.toasted = toasted;
         this.toppings = toppings;
     }
-
-
 
     @Override
     public String toString() {
@@ -41,11 +40,9 @@ public class Sandwich extends Product {
 
         // Add the price of the toppings
         double toppingsPrice = 0.0;
-        for (Object topping : toppings) {
-            if (topping instanceof Product) {
-                Product toppingItem = (Product) topping;
-                toppingsPrice += toppingItem.getPrice();
-
+        for (Object toppingList : toppings) {
+            for(Product topping: (ArrayList<Product>) toppingList){
+                toppingsPrice += topping.getPrice();
             }
         }
         return basePrice + toppingsPrice;
@@ -65,11 +62,9 @@ public class Sandwich extends Product {
 
         // Add the price of the toppings
         double toppingsPrice = 0.0;
-        for (Object topping : toppings) {
-            if (topping instanceof Product) {
-                Product toppingItem = (Product) topping;
-                toppingsPrice += toppingItem.getPrice();
-
+        for (Object toppingList : toppings) {
+            for(Product topping: (ArrayList<Product>) toppingList){
+                toppingsPrice += topping.getPrice();
             }
         }
 
