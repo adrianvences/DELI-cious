@@ -18,6 +18,8 @@ public class Sandwich extends Product {
         this.toppings = toppings;
     }
 
+
+
     @Override
     public String toString() {
         return "Sandwich {" +
@@ -46,10 +48,32 @@ public class Sandwich extends Product {
 
             }
         }
+        return basePrice + toppingsPrice;
+    }
 
+    public List<Object> getToppings(){
+        return toppings;
+    }
 
+    @Override
+    public double getPrice() {
+        double basePrice = switch (sandwichSize) {
+            case FOUR -> breadChoice.getSmallPrice();
+            case EIGHT -> breadChoice.getMediumPrice();
+            case TWELVE -> breadChoice.getLargePrice();
+        };
 
+        // Add the price of the toppings
+        double toppingsPrice = 0.0;
+        for (Object topping : toppings) {
+            if (topping instanceof Product) {
+                Product toppingItem = (Product) topping;
+                toppingsPrice += toppingItem.getPrice();
+
+            }
+        }
 
         return basePrice + toppingsPrice;
     }
+
 }

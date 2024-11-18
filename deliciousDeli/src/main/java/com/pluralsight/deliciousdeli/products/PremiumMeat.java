@@ -1,5 +1,7 @@
 package com.pluralsight.deliciousdeli.products;
 
+import com.pluralsight.deliciousdeli.enums.SandWichSize;
+
 public class PremiumMeat extends Product {
     public PremiumMeat(String name, double price, double smallPrice, double mediumPrice, double largePrice) {
         super(name, price, smallPrice, mediumPrice, largePrice);
@@ -8,6 +10,19 @@ public class PremiumMeat extends Product {
     @Override
     public double calculateProductTotal() {
         return 0;
+    }
+
+    public double setPrice(SandWichSize size) {
+        switch (size) {
+            case FOUR:
+                price = smallPrice;
+            case EIGHT:
+                price = mediumPrice;
+            case TWELVE:
+                price = largePrice;
+            default:
+                return 0.0;
+        }
     }
 
     @Override

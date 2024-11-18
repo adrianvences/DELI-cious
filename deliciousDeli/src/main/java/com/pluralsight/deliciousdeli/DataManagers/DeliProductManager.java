@@ -128,7 +128,7 @@ public class DeliProductManager {
                 return SandWichSize.values()[index]; // Return the selected size
             }
         } catch (NumberFormatException e) {
-            // Handle invalid input (non-integer values)
+            // Handle invalid input
             System.out.println("Invalid input. Please enter a valid number.");
         }
         return null; // Return null if the selection is invalid

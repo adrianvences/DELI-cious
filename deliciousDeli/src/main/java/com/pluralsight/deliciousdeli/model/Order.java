@@ -21,6 +21,19 @@ public class Order {
         this.totalPrice = 0.0;
     }
 
+    public void addToppings(Sandwich s) {
+        // Get all toppings from the sandwich
+        List<Object> sandwichToppings = s.getToppings();
+
+        // Iterate over each topping and add it to the products list
+        for (Object topping : sandwichToppings) {
+            if (topping instanceof Product toppingProduct) {
+                // Add the topping to the products list using addProduct method
+                addProduct(toppingProduct);
+            }
+        }
+    }
+
     public void addProduct(Product p){
         products.add(p);
         totalPrice += p.getPrice();
