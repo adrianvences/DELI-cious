@@ -133,24 +133,7 @@ public class DeliProductManager {
         }
         return null; // Return null if the selection is invalid
     }
-
-
-
-
-
     // Getters
-    public List<IncludedTopping> getToppings() {
-        return toppings;
-    }
-
-    public List<Drink> getDrinks() {
-        return drinks;
-    }
-
-    public List<Chips> getChips() {
-        return chips;
-    }
-
     public List<PremiumMeat> getMeats() {
         return meats;
     }
@@ -159,16 +142,5 @@ public class DeliProductManager {
         return cheeses;
     }
 
-    public List<Sauce> getSauces() {
-        return sauces;
-    }
-
-    public List<Side> getSides() {
-        return sides;
-    }
-
-    public List<Bread> getBreads() {
-        return breads;
-    }
 }
 

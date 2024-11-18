@@ -13,16 +13,16 @@ public class PremiumCheese extends Product{
     }
 
 
-    public void setPrice(SandWichSize size) {
+    public double setPrice(SandWichSize size) {
         switch (size) {
             case FOUR:
-                price = smallPrice;
+                return price = smallPrice;
             case EIGHT:
-                price = mediumPrice;
+                return price = mediumPrice;
             case TWELVE:
-                price = largePrice;
+                return price = largePrice;
             default:
-                price = 0.0;
+                return price = 0.0;
         }
     }
 

@@ -15,11 +15,11 @@ public class PremiumMeat extends Product {
     public double setPrice(SandWichSize size) {
         switch (size) {
             case FOUR:
-                price = smallPrice;
+                return price = smallPrice;
             case EIGHT:
-                price = mediumPrice;
+                return price = mediumPrice;
             case TWELVE:
-                price = largePrice;
+                return price = largePrice;
             default:
                 return 0.0;
         }

@@ -11,13 +11,11 @@ public class Order {
     private String customerName;
     private List<Product> products;  // List of products in the order
     private double totalPrice;
-    private List<Sandwich> sandwiches;
 
     public Order(int orderId, String customerName) {
         this.orderId = orderId;
         this.customerName = customerName;
         this.products = new ArrayList<>();
-        this.sandwiches = new ArrayList<>();
         this.totalPrice = 0.0;
     }
 

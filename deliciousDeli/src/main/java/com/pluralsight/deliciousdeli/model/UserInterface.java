@@ -97,7 +97,7 @@ public class UserInterface {
         }
 
         List<PremiumCheese> testCheese = productsFileManager.getCheeses();
-        for (PremiumCheese c : testCheese){
+        for (PremiumCheese c : testCheese) {
             System.out.println(c);
             System.out.println(c.getPrice());
             System.out.println(c.getSmallPrice());
